@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
 import openSocket from 'socket.io-client';
 import Scoreboard from './components/Scoreboard';
+import PlayerList from './components/PlayerList';
 
 class App extends Component {
   constructor(props) {
@@ -34,7 +35,10 @@ class App extends Component {
       <AppContainer>
         {
           data &&
-          <Scoreboard map={data.map} phase={data.phase_countdowns} />
+          <Fragment>
+            <StyledScoreboard map={data.map} phase={data.phase_countdowns} />
+            <PlayerList ct players={data.allplayers} />
+          </Fragment>
         }
       </AppContainer>
     );
@@ -45,6 +49,10 @@ const AppContainer = styled.div`
   width: 1920px;
   height: 1080px;
   box-sizing: border-box;
+`
+
+const StyledScoreboard = styled(Scoreboard)`
+  padding-top: 24px;
 `
 
 export default App;

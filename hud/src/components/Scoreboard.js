@@ -4,7 +4,7 @@ import colors from '../config/styles';
 import moment from 'moment';
 
 const Scoreboard = (props) => (
-  <ScoreboardContainer>
+  <ScoreboardContainer className={props.className || ''}>
     <ScoreboardItems>
       <Team ct>{props.map.team_ct.name}</Team>
       <Score ct>{props.map.team_ct.score}</Score>
@@ -22,7 +22,6 @@ const ScoreboardContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 24px;
   box-sizing: border-box;
 `
 
