@@ -45,7 +45,7 @@ const HealthbarContainer = styled.div`
 `
 
 const Healthbar = styled.div`
-  background: ${props => props.side === 'CT' ? colors.CT : colors.TR};
+  background: ${props => props.side === 'CT' ? colors.CT_GRADIENT : colors.TR_GRADIENT };
   height: 25px;
   transition: all 0.2s;
 `
