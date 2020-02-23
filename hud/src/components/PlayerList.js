@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import Player from './Player';
 
 const PlayerList = (props) => (
-  <PlayerListContainer>
+  <PlayerListContainer className={props.className || ''}>
     {
       Object.keys(props.players).map(playerId => (
-        <Player data={props.players[playerId]} />
+        <Player side={props.side} data={props.players[playerId]} />
       ))
     }
   </PlayerListContainer>

@@ -27,6 +27,6 @@ setInterval(() => {
   if (currIndex === data.length) {
     currIndex = 2;
   }
-}, 100);
+}, 1000);
 
 http.listen(3000, () => console.log('Listening for CS:GO info on :3000'))

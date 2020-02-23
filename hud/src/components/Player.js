@@ -6,12 +6,17 @@ const Player = (props) => (
   <PlayerContainer>
     <PlayerPhoto />
     <PlayerData>
-      <DamageHealthbar style={{ width: `${props.data.state.health}%` }} />
-      <Healthbar style={{ width: `${props.data.state.health}%` }} />
+      <HealthbarContainer>
+        <DamageHealthbar style={{ width: `${props.data.state.health}%` }} />
+        <Healthbar side={props.side} style={{ width: `${props.data.state.health}%` }} />
+      </HealthbarContainer>
       <PlayerMeta>
         <span>{props.data.state.health}</span>
         {props.data.name}
       </PlayerMeta>
+      <PlayerStats>
+        ${props.data.state.money}
+      </PlayerStats>
     </PlayerData>
   </PlayerContainer>
 )
@@ -24,21 +29,25 @@ const PlayerContainer = styled.div`
 const PlayerPhoto = styled.div`
   width: 50px;
   height: 50px;
-  background: red;
+  background: ${colors.DARKER_GRAY_90};
 `
 
 const PlayerData = styled.div`
   width: 250px;
   height: 50px;
-  margin-left: 8px;
+  margin-left: 4px;
+  background: ${colors.DARKER_GRAY_90};
+`
+
+const HealthbarContainer = styled.div`
+  margin-bottom: -25px;
   background: ${colors.DARKER_GRAY_90};
 `
 
 const Healthbar = styled.div`
-  background: ${colors.CT};
+  background: ${props => props.side === 'CT' ? colors.CT : colors.TR};
   height: 25px;
   transition: all 0.2s;
-  margin-bottom: -25px;
 `
 
 const DamageHealthbar = styled.div`
@@ -54,6 +63,7 @@ const PlayerMeta = styled.div`
   color: white;
   font-weight: bold;
   font-size: 14px;
+  text-shadow: 0px 0px 3px rgba(0,0,0,0.5);
 
   & span {
     width: 35px;
@@ -64,6 +74,14 @@ const PlayerMeta = styled.div`
     margin-right: 8px;
   }
 `
+
+const PlayerStats = styled.div`
+  font-weight: bold;
+  color: green;
+  font-size: 14px;
+  line-height: 25px;
+  padding: 0 10px;
+`;
 
 export default Player;
 

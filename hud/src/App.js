@@ -26,6 +26,14 @@ class App extends Component {
     })
   }
 
+  getTeamPlayers = (players, side) => (
+    Object.keys(players)
+      .map(playerKey => {
+        return players[playerKey];
+      })
+      .filter(player => player.team === side)
+  )
+
   render() {
     const {
       data,
@@ -37,7 +45,9 @@ class App extends Component {
           data &&
           <Fragment>
             <StyledScoreboard map={data.map} phase={data.phase_countdowns} />
-            <PlayerList ct players={data.allplayers} />
+            <CTPlayerList side="CT" players={this.getTeamPlayers(data.allplayers, "CT")} />
+            <TPlayerList side="T" players={this.getTeamPlayers(data.allplayers, "T")} />
+
           </Fragment>
         }
       </AppContainer>
@@ -46,13 +56,26 @@ class App extends Component {
 }
 
 const AppContainer = styled.div`
-  width: 1920px;
-  height: 1080px;
+  width: 1280px;
+  height: 720px;
+  position: relative;
   box-sizing: border-box;
 `
 
 const StyledScoreboard = styled(Scoreboard)`
   padding-top: 24px;
+`
+
+const CTPlayerList = styled(PlayerList)`
+  position: absolute;
+  left: 0;
+  bottom: 100px;
+`
+
+const TPlayerList = styled(PlayerList)`
+  position: absolute;
+  right: 0;
+  bottom: 100px;
 `
 
 export default App;
