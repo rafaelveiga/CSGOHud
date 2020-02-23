@@ -1,4 +1,12 @@
 html, body {
   margin: 0;
   padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-image: url('https://i.ytimg.com/vi/_w3EfnVc6CI/maxresdefault.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
