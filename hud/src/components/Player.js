@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import colors from '../config/styles';
 
 const Player = (props) => (
-  <PlayerContainer>
+  <PlayerContainer reverse={props.reverse} health={props.data.state.health}>
     <PlayerPhoto />
-    <PlayerData>
-      <HealthbarContainer>
+    <PlayerData reverse={props.reverse}>
+      <HealthbarContainer reverse={props.reverse}>
         <DamageHealthbar style={{ width: `${props.data.state.health}%` }} />
         <Healthbar side={props.side} style={{ width: `${props.data.state.health}%` }} />
       </HealthbarContainer>
-      <PlayerMeta>
+      <PlayerMeta reverse={props.reverse}>
         <span>{props.data.state.health}</span>
         {props.data.name}
       </PlayerMeta>
@@ -23,25 +23,32 @@ const Player = (props) => (
 
 const PlayerContainer = styled.div`
   display: flex;
+  flex-direction: ${props => props.reverse ? 'row-reverse' : 'row'};
   margin-bottom: 12px;
+  opacity: ${props => props.health === 0 ? '0.5' : '1'};
+  transition: all 0.2s;
 `
 
 const PlayerPhoto = styled.div`
   width: 50px;
   height: 50px;
-  background: ${colors.DARKER_GRAY_90};
+  background: url('https://static.hltv.org//images/playerprofile/bodyshot/compressed/4954.png') ${colors.DARKER_GRAY_90};
+  background-size: 150%;
+  background-position: top;
 `
 
 const PlayerData = styled.div`
   width: 250px;
   height: 50px;
-  margin-left: 4px;
+  margin-left: ${props => props.reverse ? '0px' : '4px'};
+  margin-right: ${props => props.reverse ? '4px' : '0px'};
   background: ${colors.DARKER_GRAY_90};
 `
 
 const HealthbarContainer = styled.div`
   margin-bottom: -25px;
   background: ${colors.DARKER_GRAY_90};
+  transform: ${props => props.reverse ? 'scaleX(-1)' : 'none'}
 `
 
 const Healthbar = styled.div`
@@ -64,6 +71,8 @@ const PlayerMeta = styled.div`
   font-weight: bold;
   font-size: 14px;
   text-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+  flex-direction: ${props => props.reverse ? 'row-reverse' : 'row'};
+  position: relative;
 
   & span {
     width: 35px;
@@ -71,7 +80,8 @@ const PlayerMeta = styled.div`
     line-height: 25px;
     text-align: center;
     background: rgba(0,0,0,0.2);
-    margin-right: 8px;
+    margin-right: ${props => props.reverse ? '0px' : '8px'};
+    margin-left: ${props => props.reverse ? '8px' : '0px'};
   }
 `
 

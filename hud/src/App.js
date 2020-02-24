@@ -47,7 +47,7 @@ class App extends Component {
           <Fragment>
             <StyledScoreboard map={data.map} phase={data.phase_countdowns} />
             <CTPlayerList side="CT" players={this.getTeamPlayers(data.allplayers, "CT")} />
-            <TPlayerList side="T" players={this.getTeamPlayers(data.allplayers, "T")} />
+            <TPlayerList reverse side="T" players={this.getTeamPlayers(data.allplayers, "T")} />
             
             <StyledCurrentPlayer data={data.player} />
           </Fragment>

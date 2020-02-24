@@ -6,7 +6,7 @@ const PlayerList = (props) => (
   <PlayerListContainer className={props.className || ''}>
     {
       Object.keys(props.players).map(playerId => (
-        <Player side={props.side} data={props.players[playerId]} />
+        <Player reverse={props.reverse} side={props.side} data={props.players[playerId]} />
       ))
     }
   </PlayerListContainer>
