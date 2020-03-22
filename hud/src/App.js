@@ -4,6 +4,7 @@ import openSocket from 'socket.io-client';
 import Scoreboard from './components/Scoreboard';
 import PlayerList from './components/PlayerList';
 import CurrentPlayer from './components/CurrentPlayer';
+import Radar from './components/Radar';
 
 class App extends Component {
   constructor(props) {
@@ -48,6 +49,7 @@ class App extends Component {
             <StyledScoreboard map={data.map} phase={data.phase_countdowns} />
             <CTPlayerList side="CT" players={this.getTeamPlayers(data.allplayers, "CT")} />
             <TPlayerList reverse side="T" players={this.getTeamPlayers(data.allplayers, "T")} />
+            <StyledRadar data={data} />
             
             <StyledCurrentPlayer data={data.player} />
           </Fragment>
@@ -84,6 +86,12 @@ const StyledCurrentPlayer = styled(CurrentPlayer)`
   position: absolute;
   bottom: 60px;
   width: 100%;
+`
+
+const StyledRadar = styled(Radar)`
+  position: absolute;
+  top: 20px;
+  left: 20px;
 `
 
 export default App;

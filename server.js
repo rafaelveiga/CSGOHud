@@ -20,13 +20,13 @@ app.post("/", (req, res) => {
 let currIndex = 2;
 setInterval(() => {
   console.log("Sending index", currIndex);
-  io.emit("update", data[currIndex]);
+  //  io.emit("update", data[currIndex]);
 
   currIndex = currIndex + 1;
 
   if (currIndex === data.length) {
     currIndex = 2;
   }
-}, 500);
+}, 1111500);
 
 http.listen(3000, () => console.log("Listening for CS:GO info on :3000"));
