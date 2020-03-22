@@ -49,7 +49,10 @@ class App extends Component {
             <StyledScoreboard map={data.map} phase={data.phase_countdowns} />
             <CTPlayerList side="CT" players={this.getTeamPlayers(data.allplayers, "CT")} />
             <TPlayerList reverse side="T" players={this.getTeamPlayers(data.allplayers, "T")} />
-            <StyledRadar data={data} />
+            <StyledRadar
+              ctPlayers={this.getTeamPlayers(data.allplayers, "CT")}
+              tPlayers={this.getTeamPlayers(data.allplayers, "T")}
+            />
             
             <StyledCurrentPlayer data={data.player} />
           </Fragment>
