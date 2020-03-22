@@ -34,18 +34,15 @@ const ScoreboardItems = styled.div`
 const Team = styled.div`
   font-weight: bold;
   background: ${colors.DARKER_GRAY_90};
+  color: ${props => props.ct ? colors.CT : colors.TR};
+  text-transform: uppercase;
 
-  width: 200px;
-  font-size: 20px;
-  color: white;
-  line-height: 38px;
-  padding: 0 20px;
-  height: 40px;
+  width: 300px;
+  font-size: 24px;
+  line-height: 58px;
+  height: 60px;
   box-sizing: border-box;
-
-  &:first-child {
-    text-align: right;
-  }
+  text-align: center;
 `
 
 const Score = styled.div`
@@ -74,13 +71,14 @@ const Time = styled.div`
 
   & span {
     font-weight: bold;
-    font-size: 20px;
-    margin-top: 0px;
+    font-size: 26px;
+    margin-top: -2px;
   }
 
   & small {
-    font-size: 10px;
+    font-size: 12px;
     font-weight: bold;
+    margin-top: -4px;
     color: ${colors.GRAY}
   }
 `
