@@ -43,7 +43,7 @@ const Player = props => {
           {main && renderWeaponImage(main)}
           {!main && pistol && renderWeaponImage(pistol)}
         </PlayerMeta>
-        <PlayerStats>
+        <PlayerStats reverse={props.reverse}>
           ${props.data.state.money}
           {main && pistol && renderWeaponImage(pistol)}
         </PlayerStats>
@@ -124,6 +124,9 @@ const PlayerStats = styled.div`
   font-size: 14px;
   line-height: 25px;
   padding: 0 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: ${props => (props.reverse ? "row-reverse" : "row")};
 `;
 
 const PlayerName = styled.div`
