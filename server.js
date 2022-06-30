@@ -1,10 +1,28 @@
 const express = require("express");
 const app = express();
-const http = require("http").Server(app);
-const io = require("socket.io")(http);
-const data = require("./data.json");
+const http = require("http");
+const cors = require("cors");
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:3001",
+    credentials: true,
+  },
+  allowEIO3: true,
+  transports: ["websocket"],
+});
 
 app.use(express.json());
+app.use(cors({ origin: "http://localhost:3001" }));
+
+io.on("connection", (socket) => {
+  console.log("a user connected");
+});
+
+server.listen(3000, () => {
+  console.log("listening on *:3000");
+});
 
 app.get("/", (req, res) => {
   res.json(data);
@@ -16,17 +34,3 @@ app.post("/", (req, res) => {
   res.status(200);
   res.end();
 });
-
-let currIndex = 2;
-setInterval(() => {
-  console.log("Sending index", currIndex);
-//  io.emit("update", data[currIndex]);
-
-  currIndex = currIndex + 1;
-
-  if (currIndex === data.length) {
-    currIndex = 2;
-  }
-}, 111500);
-
-http.listen(3000, () => console.log("Listening for CS:GO info on :3000"));
